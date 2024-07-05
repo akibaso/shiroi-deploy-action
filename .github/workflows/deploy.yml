@@ -81,10 +81,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 $GITHUB_WORKSPACE
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
 
       - name: Checkout LFS objects
         run: git lfs checkout
+        working-directory: Shiroi
+        
       - uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
