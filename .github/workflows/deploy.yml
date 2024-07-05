@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 /home/runner/work/shiroi-deploy-action/shiroi-deploy-action
           ls -lh && cd Shiroi && ls -lh
         
       - name: Use content from prev job and compare
@@ -64,7 +64,6 @@ jobs:
           else
             echo "Hashes do not match. Continuing workflow."
           fi
-        working-directory: Shiroi
         
   build:
     name: Build artifact
@@ -81,11 +80,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 /home/runner/work/shiroi-deploy-action/shiroi-deploy-action
 
       - name: Checkout LFS objects
         run: git lfs checkout
-        working-directory: Shiroi
         
       - uses: pnpm/action-setup@v4
         with:
