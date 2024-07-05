@@ -46,11 +46,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          cd $GITHUB_WORKSPACE && ls -lh
-          rm -rf $GITHUB_WORKSPACE
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 $GITHUB_WORKSPACE
-          ls -lh && cd Shiroi && ls -lh && 
-
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
+          ls -lh && cd Shiroi && ls -lh
+        
       - name: Use content from prev job and compare
         id: use_content
         env:
@@ -66,7 +64,8 @@ jobs:
           else
             echo "Hashes do not match. Continuing workflow."
           fi
-
+        working-directory: Shiroi
+        
   build:
     name: Build artifact
     runs-on: ubuntu-latest
