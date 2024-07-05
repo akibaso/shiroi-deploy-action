@@ -83,7 +83,7 @@ jobs:
 
       - name: Checkout LFS objects
         run: git lfs checkout
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
       - name: Use Node.js ${{ matrix.node-version }}
