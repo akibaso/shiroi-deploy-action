@@ -46,8 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          token=$(cat ${{ secrets.GH_PAT }}) || true
-          git clone "https://h1k4r:$token@github.com/innei-dev/Shiroi.git" --depth 1
+          git clone "https://h1k4r:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
 
       - name: Use content from prev job and compare
         id: use_content
@@ -80,8 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          token=$(cat ${{ secrets.GH_PAT }}) || true
-          git clone "https://h1k4r:$token@github.com/innei-dev/Shiroi.git" --depth 1
+          git clone "https://h1k4r:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1
 
       - name: Checkout LFS objects
         run: git lfs checkout
