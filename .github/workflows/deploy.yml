@@ -46,7 +46,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 /home/runner/work/shiroi-deploy-action/shiroi-deploy-action
+          cd /home/runner/work/shiroi-deploy-action/shiroi-deploy-action && ls -lh
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 
           ls -lh && cd Shiroi && ls -lh
         
       - name: Use content from prev job and compare
