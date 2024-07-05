@@ -46,8 +46,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 .
-          ls -lh && cd Shiroi && ls -lh
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 $GITHUB_WORKSPACE
+          ls -lh && cd Shiroi && ls -lh && cd $GITHUB_WORKSPACE && ls -lh
 
       - name: Use content from prev job and compare
         id: use_content
@@ -80,7 +80,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 .
+          git clone "https://${{ secrets.GH_USER }}:${{ secrets.GH_PAT }}@github.com/innei-dev/Shiroi.git" --depth 1 $GITHUB_WORKSPACE
 
       - name: Checkout LFS objects
         run: git lfs checkout
