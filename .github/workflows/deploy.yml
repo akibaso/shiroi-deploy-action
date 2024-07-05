@@ -45,11 +45,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          repository: innei-dev/Shiroi
-          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          fetch-depth: 0
-          lfs: true
+      - run: |
+          token=$(cat ${{ secrets.GH_PAT }}) || true
+          git clone "https://h1k4r:$token@github.com/innei-dev/Shiroi.git" --depth 0
 
       - name: Use content from prev job and compare
         id: use_content
@@ -81,11 +79,9 @@ jobs:
       branch: ${{ steps.store.outputs.branch }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          repository: innei-dev/shiroi
-          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          fetch-depth: 0
-          lfs: true
+      - run: |
+          token=$(cat ${{ secrets.GH_PAT }}) || true
+          git clone "https://h1k4r:$token@github.com/innei-dev/Shiroi.git" --depth 1
 
       - name: Checkout LFS objects
         run: git lfs checkout
